@@ -1,24 +1,30 @@
-const routes = [
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+
+export const LOGIN = "/login";
+export const REGISTER = "/register";
+export const HOME = "/";
+export const CONCERT = "/concert/:id";
+
+export const routes = [
   {
     name: "Login",
-    path: "/login",
-    component: "",
+    path: LOGIN,
+    component: Login,
   },
   {
     name: "Register",
-    path: "/register",
-    component: "",
+    path: REGISTER,
+    component: null,
   },
   {
     name: "Home",
-    path: "/",
-    component: "",
+    path: HOME,
+    component: Home,
   },
   {
     name: "Concert",
-    path: "/concert/:id",
-    component: "",
+    path: CONCERT,
+    component: null,
   },
 ];
-
-export default routes;

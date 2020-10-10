@@ -1,21 +1,22 @@
-import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, Col, Container, Row } from "react-bootstrap";
-import { RiArrowDownSLine } from "react-icons/ri";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { BiDollarCircle } from "react-icons/bi";
-import { GiMicrophone } from "react-icons/gi";
-import Button from "@material-ui/core/Button";
-import "./App.css";
-
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 
-function App() {
+import { Card, Col, Container, Row } from "react-bootstrap";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { BiDollarCircle } from "react-icons/bi";
+import Button from "@material-ui/core/Button";
+import { GiMicrophone } from "react-icons/gi";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import React from "react";
+import { RiArrowDownSLine } from "react-icons/ri";
+import { withFirebase } from "../../contexts";
+import { withRouter } from "react-router-dom";
+
+function Home() {
   return (
     <div>
       {/* Start of Banner */}
-
       <Swiper spaceBetween={20} slidesPerView={1.15} className={"mt-4"}>
         <SwiperSlide>
           <Card
@@ -549,4 +550,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(withFirebase(Home));
