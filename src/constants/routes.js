@@ -15,7 +15,7 @@ const routes = [
     component: "",
   },
   {
-    name: 'Concert'
+    name: "Concert",
     path: "/concert/:id",
     component: "",
   },
