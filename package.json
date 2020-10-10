@@ -18,7 +18,11 @@
     "react-chartjs-2": "^2.10.0",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
+<<<<<<< HEAD
     "react-number-format": "^4.4.1",
+=======
+    "react-pro-sidebar": "^0.4.4",
+>>>>>>> First
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-toastify": "^6.0.9",
