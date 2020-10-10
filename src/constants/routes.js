@@ -37,4 +37,9 @@ export const routes = [
     path: CONCERT,
     component: Concert,
   },
+  {
+    name: "Vendor",
+    path: VENDOR,
+    component: Vendor,
+  },
 ];
