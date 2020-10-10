@@ -6,30 +6,29 @@
 	justify-content: center;
     height: 100%;
     vertical-align: middle;
-    // background-color: $secondary-light-color;
-    background-image: url("/background.webp");
-
+	// background-color: $secondary-light-color;
+	background-image: url("/background.webp");
 }
 
-#login-art-img {
+#register-art-img {
     width: 100%;
     height: 100%;
-    border-radius: 0 10px 10px 0;
+    border-radius: 10px 0 0 10px;
 }
 
-.login-square {
+.register-square {
     border-radius: 10px;
 }
 
-#login-section {
+#register-section {
     background-color: white;
 }
 
-#login-art-container {
-    padding-right: 0;
+#register-art-container {
+    padding-left: 0;
 }
 
-#btn-login {
+#btn-register {
     border: 0;
     background-color: $secondary-dark-color;
     color: "#FFF";

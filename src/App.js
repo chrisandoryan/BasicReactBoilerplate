@@ -3,18 +3,18 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 
 import Firebase, { AuthContext, FirebaseContext } from "./contexts";
+import { LOGIN, routes } from "./constants/routes";
 import React, { useEffect, useState } from "react";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router, withRouter } from "react-router-dom";
 
 import Splash from "./components/Splash";
 import { ToastContainer } from "react-toastify";
 import User from "./models/user";
 import { getUserDocument } from "./services/user";
-import { routes } from "./constants/routes";
 
-function App() {
+function App(props) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const firebase = new Firebase();
 
   const auth = { user, setUser };
@@ -32,6 +32,11 @@ function App() {
           setUser(user);
           setLoading(false);
         }
+      }
+      else {
+        //TODO: Redirect to login.
+        // props.history.push(LOGIN);
+        setLoading(false);
       }
     });
   }, user);
