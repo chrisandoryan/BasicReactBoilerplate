@@ -14,7 +14,7 @@ import { getUserDocument } from "./services/user";
 
 function App(props) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const firebase = new Firebase();
 
   const auth = { user, setUser };
