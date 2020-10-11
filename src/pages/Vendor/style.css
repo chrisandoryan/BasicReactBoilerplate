@@ -1,3 +1,7 @@
+#sidebar-title{
+    padding: 16px;
+}
+
 .my-container{
     height: 100%;
     display:flex;

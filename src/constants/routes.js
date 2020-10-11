@@ -43,9 +43,4 @@ export const routes = [
     path: VENDOR,
     component: Vendor,
   },
-  {
-    name: "Vendor",
-    path: VENDOR,
-    component: Vendor,
-  },
 ];

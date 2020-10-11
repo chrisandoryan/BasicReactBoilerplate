@@ -19,13 +19,13 @@ function Vendor(props) {
     const [reactions, setReactions] = useState([]);
     const [events, setEvents] = useState([])
     const [isFetched, setIsFetched] = useState(false)
+    const [options, setOptions] = useState([]);
 
-    // jumlah pembeli
-    // jumlah yang hadir
-    // reaction
+    const defaultOption = options[0];
 
     const fetchEvent = (e) => {
         let eventsData = []
+        let myOption = []
         db.collection("events")
             .where("vendor_id", "==", user.uid )
             .get()
@@ -34,11 +34,15 @@ function Vendor(props) {
                     let temp = evnt.id
                     let data = evnt.data()
                     data.id = temp
+                    let option = { value:data.id, label:data.name}
+                    myOption = [...myOption, option]
                     eventsData = [...eventsData, data]
                 })
+                setOptions(myOption)
                 setEvents(eventsData)
+                if(activeId == "")
+                    setActiveId(myOption[0].value)
                 setIsFetched(true)
-                console.log(events)
             })
     }
 
@@ -49,48 +53,81 @@ function Vendor(props) {
             .collection("purchases")
             .get()
             .then((purchases) => {
-                purchases.forEach(purchase => {
+                purchases.docs.forEach(purchase => {
                     purchasesData = [...purchasesData,purchase.data()]
                 })
                 setAttendees(purchasesData)
+                console.log("My Purchase Data : ",purchasesData)
             })
-        console.log(attendees)
     }
 
-    const fetchReactions = (e) => {
+    const fetchReactions = () => {
         let reactionsData = []
         db.collection("events")
             .doc(activeId)
             .collection("reactions")
             .get()
-            .then((reactions) => {
-                reactions.forEach(reaction => {
+            .then((reactionsDocs) => {
+                reactionsDocs.docs.forEach(reaction => {
                     reactionsData = [...reactionsData, reaction.data()]
                 })
                 setReactions(reactionsData)
             })
-        console.log(reactions)
+    }
+
+    
+    function countEmoticon(){
+        let smile=0
+        let normal=0
+        let sad=0
+        reactions.forEach(r => {
+            if(r.emoticon == 1)
+                sad++
+            else if(r.emoticon == 2)
+                normal++
+            else
+                smile++
+        })
+
+        return [sad,normal,smile]
+    }
+
+    function countAttendee(){
+        let attend=0
+        let dont=0
+
+        attendees.forEach(attendee => {
+            if(attendee.isAttend == false)
+                dont++
+            else
+                attend++
+        })
+
+        return [attend, dont]
+    }
+
+    const _onChange = (option) => {
+        setActiveId(option.value)
+        fetchPurchases()
+        fetchReactions()
     }
 
     useEffect(() => {
-        fetchEvent()
-        // fetchPurchases()
-        // fetchReactions()
-    }, [activeId]);
-
-    const options = [
-        'one', 'two', 'three'
-      ];
-    const defaultOption = options[0];
+        if(user !== null) {
+            fetchEvent()
+            if(isFetched) {
+                fetchPurchases()
+                fetchReactions()
+            }
+        }
+    }, [activeId, user]);
 
     const pie = {
         labels: [
-            'Male',
-            'Female',
-            'Secret'
+            'Sad','Normal','Smile'
         ],
         datasets: [{
-            data: [300, 50, 100],
+            data: countEmoticon(),
             backgroundColor: [
                 '#FF6384',
                 '#36A2EB',
@@ -104,40 +141,13 @@ function Vendor(props) {
         }]
     };
 
-    const line = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-            {
-                label: 'Number of Attendee',
-                fill: false,
-                lineTension: 0.1,
-                backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: 'rgba(75,192,192,1)',
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: 'rgba(75,192,192,1)',
-                pointBackgroundColor: '#fff',
-                pointBorderWidth: 1,
-                pointHoverRadius: 5,
-                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                pointHoverBorderColor: 'rgba(220,220,220,1)',
-                pointHoverBorderWidth: 2,
-                pointRadius: 1,
-                pointHitRadius: 10,
-                data: [65, 59, 80, 81, 56, 55, 40]
-            }
-        ]
-    };
-
     const doughnat = {
         labels: [
-            'Dislike',
-            'Like'
+            'Attend',
+            'Didn\'t Attend'
         ],
         datasets: [{
-            data: [50, 100],
+            data: countAttendee(),
             backgroundColor: [
             '#FF6384',
             '#36A2EB',
@@ -163,23 +173,20 @@ function Vendor(props) {
                             <MenuItem icon={<FaHome />}>Dashboard</MenuItem>
                         </Menu>
                     </SidebarContent>
-                    <SidebarFooter>
-                        Copyright Senja
-                    </SidebarFooter>
                 </ProSidebar>
                 <div className={"card-contents"}>
-                <Dropdown options={options} value={defaultOption} placeholder="Select an option" />
+                    <div style={{width:'500px', marginLeft:'24px', marginTop:'16px'}}>
+                        <h3>Select Your Event</h3>
+                        <Dropdown onChange={(e) => _onChange(e)} options={options} value={defaultOption} placeholder="Select an option" />
+                    </div>
+                
                     <div className={"cards-container"}>
                         <Card className={"mycard shadow rounded"}>
-                            <Card.Title className={"card-title"}>Gender of Attendee</Card.Title>
+                            <Card.Title className={"card-title"}>Attendee Reaction</Card.Title>
                             <Pie data={pie} />
                         </Card>
                         <Card className={"mycard shadow rounded"}>
-                            <Card.Title className={"card-title"}>Number of Attendee</Card.Title>
-                            <Line data={line} />
-                        </Card>
-                        <Card className={"mycard shadow rounded"}>
-                            <Card.Title className={"card-title"}>Like and Dislike</Card.Title>
+                            <Card.Title className={"card-title"}>Amount of Attendee</Card.Title>
                             <Doughnut data={doughnat} />
                         </Card>
                     </div>
