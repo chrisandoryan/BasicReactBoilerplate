@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "GT-Walsheim";
+  src: local("GT-Walsheim"), url("../../fonts/GTWalsheimPro-Bold.ttf") format("truetype");
+}
+
+body,
+html,
+#root {
+  height: 100%;
+}
+
+* {
+  font-family: "GT-Walsheim" !important;
+}
+
+.btn-primary {
+  background: linear-gradient(125deg, #6000d4, #ef56ed);
+}
+/*# sourceMappingURL=App.css.map */

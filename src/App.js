@@ -41,25 +41,21 @@ function App(props) {
     });
   }, user);
 
-  return (
-    loading ? (
-      <Splash></Splash>
-    ) : (
-        <FirebaseContext.Provider value={firebase}>
-          <AuthContext.Provider value={auth}>
-            <Router>
-              <React.Fragment>
-                <ToastContainer style={{ fontFamily: "GT-Walsheim" }} />
-                {
-                  routes.map((route) => (
-                    <Route exact path={route.path} component={route.component} />
-                  ))
-                }
-              </React.Fragment>
-            </Router>
-          </AuthContext.Provider>
-        </FirebaseContext.Provider>
-    )
+  return loading ? (
+    <Splash></Splash>
+  ) : (
+    <FirebaseContext.Provider value={firebase}>
+      <AuthContext.Provider value={auth}>
+        <Router>
+          <React.Fragment>
+            <ToastContainer style={{ fontFamily: "GT-Walsheim" }} />
+            {routes.map((route) => (
+              <Route exact path={route.path} component={route.component} />
+            ))}
+          </React.Fragment>
+        </Router>
+      </AuthContext.Provider>
+    </FirebaseContext.Provider>
   );
 }
 

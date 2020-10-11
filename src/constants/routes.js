@@ -1,3 +1,4 @@
+import Concert from "../pages/Concert";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Logout from "../pages/Logout";
@@ -34,6 +35,6 @@ export const routes = [
   {
     name: "Concert",
     path: CONCERT,
-    component: null,
+    component: Concert,
   },
 ];
