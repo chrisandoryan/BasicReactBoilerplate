@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap'
 import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Pie, Line, Doughnut } from 'react-chartjs-2';
+import { Pie, Doughnut } from 'react-chartjs-2';
 import { withRouter } from "react-router-dom";
 import { AuthContext, withFirebase } from "../../contexts";
 import Dropdown from 'react-dropdown';
