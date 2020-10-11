@@ -57,7 +57,7 @@ function Concert(props) {
                 ) : (
                         <Row className={"fixed-bottom"}>
                             <Col ref={iframe} md={8}>
-                                <iframe className={"game-frame"} src={event?.concert_link} frameBorder="0" onLoad={handleFrameLoading} allow="camera https://gather.town/; microphone https://gather.town/" allowfullscreen/>
+                                <iframe className={"game-frame"} src={event?.concert_link} frameBorder="0" onLoad={handleFrameLoading}/>
                             </Col>
                             <Col md={2}>
                                 <Card
