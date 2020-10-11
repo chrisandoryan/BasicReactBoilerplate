@@ -1,14 +1,21 @@
 @import "./variable";
 
 @font-face {
-  font-family: 'GT-Walsheim';
-  src: local('GT-Walsheim'), url("../../fonts/GTWalsheimPro-Bold.ttf") format('truetype');
+  font-family: "GT-Walsheim";
+  src: local("GT-Walsheim"),
+    url("../../fonts/GTWalsheimPro-Bold.ttf") format("truetype");
 }
 
-body, html, #root {
+body,
+html,
+#root {
   height: 100%;
 }
 
 * {
-  font-family: 'GT-Walsheim' !important;
+  font-family: "GT-Walsheim" !important;
+}
+
+.btn-primary {
+  background: linear-gradient(125deg, $primary-light-color, $secondary-color);
 }
