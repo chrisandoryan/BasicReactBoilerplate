@@ -8,6 +8,7 @@ export const REGISTER = "/register";
 export const LOGOUT = "/logout";
 export const HOME = "/";
 export const CONCERT = "/concert/:id";
+export const VENDOR = "/vendor";
 
 export const routes = [
   {

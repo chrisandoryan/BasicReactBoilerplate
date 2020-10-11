@@ -57,7 +57,7 @@ function Register(props) {
                         <Col md="8" id="register-art-container">
                             <img src="register.webp" id="register-art-img"></img>
                         </Col>
-                        <Col md="4">
+                        <Col md="4" className="form-wrapper">
                             <div>
                                 <div className="">
                                     <Col className="greet-header">
@@ -66,7 +66,7 @@ function Register(props) {
                                 </div>
                                 <div className="align-middle align-items-center justify-content-md-center">
                                     <Col>
-                                        <Form onSubmit={handleRegister}>
+                                        <Form onSubmit={handleRegister} className="form">
                                             <Form.Group>
                                                 <InputGroup className="mb-2">
                                                     <TextField fullWidth type="text" id="standard-basic" label="Name" onChange={(e) => setName(e.target.value)} />
@@ -85,7 +85,7 @@ function Register(props) {
                                                     <TextField fullWidth type="password" id="standard-basic" label="Password" onChange={(e) => setPassword(e.target.value)} />
                                                 </InputGroup>
                                             </Form.Group>
-                                            <Button type="submit" className={"shadow"} block id="btn-register">
+                                            <Button type="submit" className={"shadow mt-3"} block id="btn-register">
                                                 Register
                                             </Button>
                                             <div className="foot-lnk mt-3">

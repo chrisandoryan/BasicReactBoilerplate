@@ -6,8 +6,23 @@
 	justify-content: center;
     height: 100%;
     vertical-align: middle;
+    // background-color: #f7f7f7;
 	// background-color: $secondary-light-color;
 	background-image: url("/background.webp");
+}
+
+.form-wrapper {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
 }
 
 #register-art-img {
@@ -26,6 +41,7 @@
 
 #register-art-container {
     padding-left: 0;
+    padding-right: 0;
 }
 
 #btn-register {
