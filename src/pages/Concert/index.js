@@ -3,18 +3,36 @@ import "./style.scss";
 import "swiper/swiper.scss";
 
 import { Card, Col, Container, Row } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { RiEmotionLine, RiEmotionNormalLine, RiEmotionSadLine } from "react-icons/ri";
 
 import Button from "@material-ui/core/Button";
-import React from "react";
+import Event from "../../models/event";
+import { getEventData } from "../../services/event";
 
-function Concert() {
+function Concert(props) {
+    const [event, setEvent] = useState(null);
+    const loadEvent = () => {
+        let id = props.match.params.id;
+        getEventData(id)
+            .then((doc) => {
+                if (doc.exists) {
+                    let concert = new Event();
+                    concert.setDocToObject(doc.data());
+                    setEvent(concert);
+                }
+            });
+    }
+    useEffect(() => {
+        loadEvent();
+    }, event);
     return (
         <div>
-            <iframe className={"game-frame"} src="https://gather.town/app/J5KcIR6M7dQr6YYH/BlankPink" frameBorder="0" />
             <Row className={"fixed-bottom"}>
-                <Col md={4} />
-                <Col md={3}>
+                <Col md={8}>
+                    <iframe className={"game-frame"} src={event?.concert_link} frameBorder="0" />
+                </Col>
+                <Col md={2}>
                     <Card
                         className={"shadow-lg rounded p-4"}
                         style={{ border: 0, backgroundImage: "linear-gradient(to right, #8400E2 0%, #bf4dcd 100%)" }}
@@ -29,7 +47,6 @@ function Concert() {
                         </Card>
                     </Card>
                 </Col>
-                <Col md={5} />
             </Row>
         </div>
     );
