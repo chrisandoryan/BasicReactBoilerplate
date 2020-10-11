@@ -80,7 +80,6 @@ function Home(props) {
                         dataMyEvent.endDate = eventEndDate.getDate()
                         dataMyEvent.endMonth = monthNames[eventEndDate.getMonth()]
 
-                        console.log(myEvents)
                         data = [...data, dataMyEvent]
                         setMyEvents(data)
                     })
@@ -145,7 +144,7 @@ function Home(props) {
                         >
                             <Card.Body>
                                 <Card.Title
-                                    className={"text-white font-weight-bold"}
+                                    className={"text-white font-weight-bold text-left"}
                                     style={{fontSize: 50}}
                                 >
                                     Tomorrowland
@@ -189,7 +188,7 @@ function Home(props) {
                         >
                             <Card.Body>
                                 <Card.Title
-                                    className={"text-white font-weight-bold"}
+                                    className={"text-white font-weight-bold text-left"}
                                     style={{fontSize: 50}}
                                 >
                                     We The Fest
@@ -403,11 +402,11 @@ function Home(props) {
                 {/* End of Filter Date */}
 
                 {/* Start of Event List */}
-                <Row className={"mb-4"} style={{marginTop: 40}}>
+                <Row className={"mb-4"}>
                     {/* Start of Event Item */}
                     {events.map((event) => {
                         return (
-                            <Col md={4} key={event.id}>
+                            <Col md={4} key={event.id} style={{marginTop: 30}}>
                                 <Card
                                     className={"shadow rounded"}
                                     style={{
