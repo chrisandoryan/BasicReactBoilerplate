@@ -9,3 +9,15 @@ export const getEventData = (event_id) => {
         .doc(event_id)
         .get()
 }
+
+export const getAllEvents = () => {
+    return db.collection(Event.collection)
+        .get()
+}
+
+export const getMyEvents = (user_id) => {
+    return db.collection(User.collection)
+        .doc(user_id)
+        .collection("tickets")
+        .get()
+}
