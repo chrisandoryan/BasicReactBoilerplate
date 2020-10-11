@@ -21,8 +21,6 @@ function Vendor(props) {
     const [isFetched, setIsFetched] = useState(false)
     const [options, setOptions] = useState([]);
 
-    const defaultOption = options[0];
-
     const fetchEvent = (e) => {
         let eventsData = []
         let myOption = []
@@ -40,16 +38,14 @@ function Vendor(props) {
                 })
                 setOptions(myOption)
                 setEvents(eventsData)
-                if(activeId == "")
-                    setActiveId(myOption[0].value)
                 setIsFetched(true)
             })
     }
 
-    const fetchPurchases = (e) => {
+    const fetchPurchases = (id) => {
         let purchasesData = []
         db.collection("events")
-            .doc(activeId)
+            .doc(id)
             .collection("purchases")
             .get()
             .then((purchases) => {
@@ -61,10 +57,10 @@ function Vendor(props) {
             })
     }
 
-    const fetchReactions = () => {
+    const fetchReactions = (id) => {
         let reactionsData = []
         db.collection("events")
-            .doc(activeId)
+            .doc(id)
             .collection("reactions")
             .get()
             .then((reactionsDocs) => {
@@ -108,17 +104,13 @@ function Vendor(props) {
 
     const _onChange = (option) => {
         setActiveId(option.value)
-        fetchPurchases()
-        fetchReactions()
+        fetchPurchases(option.value)
+        fetchReactions(option.value)
     }
 
     useEffect(() => {
         if(user !== null) {
             fetchEvent()
-            if(isFetched) {
-                fetchPurchases()
-                fetchReactions()
-            }
         }
     }, [activeId, user]);
 
@@ -177,10 +169,11 @@ function Vendor(props) {
                 <div className={"card-contents"}>
                     <div style={{width:'500px', marginLeft:'24px', marginTop:'16px'}}>
                         <h3>Select Your Event</h3>
-                        <Dropdown onChange={(e) => _onChange(e)} options={options} value={defaultOption} placeholder="Select an option" />
+                        <Dropdown onChange={(e) => _onChange(e)} options={options} placeholder="Select an option" />
                     </div>
-                
-                    <div className={"cards-container"}>
+                    {
+                        activeId !== "" ? (
+                        <div className={"cards-container"}>
                         <Card className={"mycard shadow rounded"}>
                             <Card.Title className={"card-title"}>Attendee Reaction</Card.Title>
                             <Pie data={pie} />
@@ -189,7 +182,10 @@ function Vendor(props) {
                             <Card.Title className={"card-title"}>Amount of Attendee</Card.Title>
                             <Doughnut data={doughnat} />
                         </Card>
-                    </div>
+                        </div>
+                        ) : (null)
+                    }
+                    
                 </div>
             </div>
         </React.Fragment>
