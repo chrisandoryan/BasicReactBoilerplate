@@ -133,7 +133,7 @@ function Home(props) {
     <div>
       {/* Start of Nav*/}
       <Navbar className={"ml-3 mt-3"}>
-        <Navbar.Brand href="#home">Gather Fest</Navbar.Brand>
+        <Navbar.Brand href="#home">Festive</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           {user != null ? (
@@ -530,7 +530,7 @@ function Home(props) {
       <footer className={"page-footer font-small"}>
         <div className={"footer-copyright text-center py-3"}>
           © 2020 Copyright
-          <a href="#"> Gather Fest</a>
+          <a href="#"> Festive</a>
         </div>
       </footer>
       {/* End of Footer */}
