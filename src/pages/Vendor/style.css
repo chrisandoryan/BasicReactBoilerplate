@@ -1,0 +1,29 @@
+#sidebar-title{
+    padding: 16px;
+}
+
+.my-container{
+    height: 100%;
+    display:flex;
+}
+
+.card-contents{
+    width: 100%;
+}
+
+.cards-container{
+    display: inline-block;
+    margin: 8px;
+}
+
+.mycard{
+    width: 500px;
+    display: block;
+    float: left;
+    margin: 16px;
+    padding: 8px;
+}
+
+.card-title{
+    text-align: center;
+}
