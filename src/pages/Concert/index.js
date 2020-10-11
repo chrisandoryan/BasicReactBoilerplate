@@ -62,17 +62,17 @@ function Concert(props) {
                             <Col md={2}>
                                 <Card
                                     className={"shadow-lg rounded p-4"}
-                                    style={{ border: 0, backgroundImage: "linear-gradient(to right, #8400E2 0%, #bf4dcd 100%)" }}
+                                    style={{ top: 0, right: 0, position: "fixed", bottom: 0, zzIndex: 99, width: 120, border: 0, backgroundImage: "linear-gradient(to right, #8400E2 0%, #bf4dcd 100%)" }}
                                 >
-                                    <h4 className={"text-center text-white"}>Give your reaction</h4>
+                                    <h4 className={"text-center text-white"} style={{fontSize: 16}}>Reaction</h4>
                                     <Card className={"shadow-lg mt-2"} style={{ borderRadius: 25, border: 0 }}>
                                         <div className={"text-center p-1"}>
                                             {
                                                 !isReacted ? (
                                                     <React.Fragment>
-                                                        <RiEmotionSadLine style={{ fontSize: 40 }} className={"text-danger"} onClick={() => handleReaction("1")}/>
-                                                        <RiEmotionNormalLine style={{ fontSize: 40 }} className={"text-muted"} onClick={() => handleReaction("2")}/>
                                                         <RiEmotionLine style={{ fontSize: 40 }} className={"text-success"} onClick={() => handleReaction("3")}/>
+                                                        <RiEmotionNormalLine style={{ fontSize: 40 }} className={"text-muted"} onClick={() => handleReaction("2")}/>
+                                                        <RiEmotionSadLine style={{ fontSize: 40 }} className={"text-danger"} onClick={() => handleReaction("1")}/>
                                                     </React.Fragment>
                                                 ) : (
                                                         <h3>Thankies!</h3>
