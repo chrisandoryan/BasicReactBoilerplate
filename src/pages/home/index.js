@@ -115,7 +115,7 @@ function Home(props) {
     if (!user.isFilled) {
       setShow(true);
     } else {
-      history.push(`concert/${link}`);
+      history.push(`concert/${id}`);
     }
   }
 
@@ -209,7 +209,7 @@ function Home(props) {
                     color: "#FFF",
                     border: 0,
                   }}
-                  onClick={() => handleBuyTicket()}
+                  onClick={() => handleBuyTicket("azSLBal5fWJGKSoQIytD")}
                 >
                   Buy Ticket
                 </Button>
@@ -266,7 +266,7 @@ function Home(props) {
                     color: "#FFF",
                     border: 0,
                   }}
-                  onClick={() => handleBuyTicket()}
+                  onClick={() => handleBuyTicket("azSLBal5fWJGKSoQIytD")}
                 >
                   Buy Ticket
                 </Button>
@@ -465,13 +465,13 @@ function Home(props) {
         {/* End of Filter Date */}
 
         {/* Start of Event List */}
-        <Row style={{ marginTop: 50 }}>
+        <Row style={{ marginTop: 20 }}>
           {/* Start of Event Item */}
           {events.map((event) => {
             return (
               <Col md={4} key={event.id}>
                 <Card
-                  className={"shadow rounded"}
+                  className={"shadow rounded mt-4"}
                   style={{
                     border: 0,
                   }}
