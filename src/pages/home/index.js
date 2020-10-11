@@ -1,19 +1,20 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import { Card, Col, Container, Row, Button, Navbar } from "react-bootstrap";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
-import NumberFormat from "react-number-format";
+
+import * as ROUTES from "../../constants/routes";
+
+import { AuthContext, withFirebase } from "../../contexts";
+import { Button, Card, Col, Container, Navbar, Row } from "react-bootstrap";
+import { Link, useHistory, withRouter } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { BiDollarCircle } from "react-icons/bi";
 import { GiMicrophone } from "react-icons/gi";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import React, { useContext, useEffect, useState } from "react";
-import { RiArrowDownSLine } from "react-icons/ri";
-import { AuthContext, withFirebase } from "../../contexts";
-import { Link, useHistory, withRouter } from "react-router-dom";
-import * as ROUTES from "../../constants/routes";
 import ModalUserData from "../../components/modalUserData";
+import NumberFormat from "react-number-format";
+import { RiArrowDownSLine } from "react-icons/ri";
 
 function Home(props) {
   const db = props.firebase.db;
@@ -104,6 +105,7 @@ function Home(props) {
   };
 
   useEffect(() => {
+    console.log(user, 'ahoy');
     if (user != null) {
       fetchMyEvent();
     }
@@ -138,7 +140,7 @@ function Home(props) {
         <Navbar.Collapse className="justify-content-end">
           {user != null ? (
             <Navbar.Text>
-              Signed in as: <a href="#">{user.name}</a>
+              <a href={ROUTES.LOGOUT}>Logout from {user.name}'s Account</a>
             </Navbar.Text>
           ) : (
             <span>

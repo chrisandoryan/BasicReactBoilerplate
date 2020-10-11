@@ -32,10 +32,14 @@ function App(props) {
           setUser(user);
           setLoading(false);
         }
+        else {
+          console.log("Not logged in");
+        }
       }
       else {
         //TODO: Redirect to login.
         // props.history.push(LOGIN);
+        setUser(null);
         setLoading(false);
       }
     });
