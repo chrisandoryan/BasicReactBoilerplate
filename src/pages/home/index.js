@@ -108,7 +108,7 @@ function Home(props) {
       fetchMyEvent();
     }
     fetchEvent();
-  }, []);
+  }, [user]);
 
   function handleBuyTicket(id) {
     setLink(id);
@@ -179,7 +179,7 @@ function Home(props) {
             >
               <Card.Body>
                 <Card.Title
-                  className={"text-white font-weight-bold"}
+                  className={"text-white font-weight-bold text-left"}
                   style={{ fontSize: 50 }}
                 >
                   Tomorrowland
@@ -236,7 +236,7 @@ function Home(props) {
             >
               <Card.Body>
                 <Card.Title
-                  className={"text-white font-weight-bold"}
+                  className={"text-white font-weight-bold text-left"}
                   style={{ fontSize: 50 }}
                 >
                   We The Fest
@@ -403,7 +403,7 @@ function Home(props) {
         {/* End of 3 Highlight */}
 
         {/* Start of Filter Date */}
-        <Row style={myEvents.length > 0 ? "margin-top: 75px" : null}>
+        <Row style={myEvents.length > 0 ? {marginTop: "75px"} : null}>
           <Col md={4}>
             <h3 className={"font-weight-bold"}>Popular upcoming events</h3>
           </Col>
@@ -465,7 +465,7 @@ function Home(props) {
         {/* End of Filter Date */}
 
         {/* Start of Event List */}
-        <Row className={"mb-4"} style={{ marginTop: 40 }}>
+        <Row style={{ marginTop: 50 }}>
           {/* Start of Event Item */}
           {events.map((event) => {
             return (
@@ -478,7 +478,7 @@ function Home(props) {
                 >
                   <Card.Img variant={"top"} src={event.image_path} />
                   <Card.Body>
-                    <Card.Title>{event.name}</Card.Title>
+                    <Card.Title className={"text-left"}>{event.name}</Card.Title>
                     <Card.Text>
                       {/*<div>{event.start_time}</div>*/}
                       <div>
