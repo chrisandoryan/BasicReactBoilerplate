@@ -1,8 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "swiper/swiper.scss";
 
 import {Card, Col, Container, Row} from "react-bootstrap";
 import {Swiper, SwiperSlide} from "swiper/react";
+import "swiper/swiper.scss";
+import NumberFormat from 'react-number-format';
 
 import {BiDollarCircle} from "react-icons/bi";
 import Button from "@material-ui/core/Button";
@@ -126,7 +127,7 @@ function Home(props) {
                                         </Card.Text>
                                         <div>
                                             <BiDollarCircle style={{color: "#FFF"}}/>{" "}
-                                            <span style={{fontSize: 14, color: "#FFF"}}>Rp{event.price}</span>
+                                            <NumberFormat value={event.price} thousandSeparator={true} prefix={"Rp "} displayType={"text"} renderText={value => <span style={{fontSize: 14, color: "#FFF"}}>{value}</span>} />
                                         </div>
                                         <Button
                                             className={"mt-3"}
@@ -173,7 +174,7 @@ function Home(props) {
                                     <p className={"mt-3 text-right"}>
                                         Show me more <MdKeyboardArrowRight/>
                                     </p>
-                                ) : null }
+                                ) : null}
                             </Col>
                         )
                     })}
@@ -351,7 +352,7 @@ function Home(props) {
                                             </div>
                                             <div>
                                                 <BiDollarCircle style={{color: "#6000D4"}}/>{" "}
-                                                <span style={{fontSize: 14}}>Rp{event.price}</span>
+                                                <NumberFormat value={event.price} thousandSeparator={true} prefix={"Rp "} displayType={"text"} renderText={value => <span style={{fontSize: 14}}>{value}</span>} />
                                             </div>
                                         </Card.Text>
                                         <Button
