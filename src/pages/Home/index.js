@@ -183,88 +183,88 @@ function Home(props) {
                 {/* End of My Events */}
 
                 {/* Start of 3 Highlight */}
-                <h3 className={"font-weight-bold mt-4"}>Explore events</h3>
-                <Row>
-                    <Col md={4}>
-                        <Card
-                            className={"shadow mt-2 p-3 rounded"}
-                            style={{
-                                border: 0,
-                                backgroundImage: "url(img2.png)",
-                                backgroundSize: "contain",
-                            }}
-                        >
-                            <Row>
-                                <Col md={6}>
-                                    <h5 className={"font-weight-bold text-white mb-0 mt-2"}>
-                                        Top summer music festivals 2020
-                                    </h5>
-                                    <p
-                                        style={{fontSize: 16}}
-                                        className={"text-light mb-0 mt-1"}
-                                    >
-                                        16 events
-                                    </p>
-                                </Col>
-                            </Row>
-                        </Card>
-                    </Col>
-                    <Col md={4}>
-                        <Card
-                            className={"shadow mt-2 p-3 rounded"}
-                            style={{
-                                border: 0,
-                                backgroundImage: "url(img2.png)",
-                                backgroundSize: "contain",
-                            }}
-                        >
-                            <Row>
-                                <Col md={6}>
-                                    <h5 className={"font-weight-bold text-white mb-0 mt-2"}>
-                                        Top summer music festivals 2020
-                                    </h5>
-                                    <p
-                                        style={{fontSize: 16}}
-                                        className={"text-light mb-0 mt-1"}
-                                    >
-                                        16 events
-                                    </p>
-                                </Col>
-                            </Row>
-                        </Card>
-                    </Col>
-                    <Col md={4}>
-                        <Card
-                            className={"shadow mt-2 p-3 rounded"}
-                            style={{
-                                border: 0,
-                                backgroundImage: "url(img2.png)",
-                                backgroundSize: "contain",
-                            }}
-                        >
-                            <Row>
-                                <Col md={6}>
-                                    <h5 className={"font-weight-bold text-white mb-0 mt-2"}>
-                                        Top summer music festivals 2020
-                                    </h5>
-                                    <p
-                                        style={{fontSize: 16}}
-                                        className={"text-light mb-0 mt-1"}
-                                    >
-                                        16 events
-                                    </p>
-                                </Col>
-                            </Row>
-                        </Card>
-                        <p className={"mt-3 text-right"}>
-                            Show me more <MdKeyboardArrowRight/>
-                        </p>
-                    </Col>
-                </Row>
+                {/*<h3 className={"font-weight-bold mt-4"}>Explore events</h3>*/}
+                {/*<Row>*/}
+                {/*    <Col md={4}>*/}
+                {/*        <Card*/}
+                {/*            className={"shadow mt-2 p-3 rounded"}*/}
+                {/*            style={{*/}
+                {/*                border: 0,*/}
+                {/*                backgroundImage: "url(img2.png)",*/}
+                {/*                backgroundSize: "contain",*/}
+                {/*            }}*/}
+                {/*        >*/}
+                {/*            <Row>*/}
+                {/*                <Col md={6}>*/}
+                {/*                    <h5 className={"font-weight-bold text-white mb-0 mt-2"}>*/}
+                {/*                        Top summer music festivals 2020*/}
+                {/*                    </h5>*/}
+                {/*                    <p*/}
+                {/*                        style={{fontSize: 16}}*/}
+                {/*                        className={"text-light mb-0 mt-1"}*/}
+                {/*                    >*/}
+                {/*                        16 events*/}
+                {/*                    </p>*/}
+                {/*                </Col>*/}
+                {/*            </Row>*/}
+                {/*        </Card>*/}
+                {/*    </Col>*/}
+                {/*    <Col md={4}>*/}
+                {/*        <Card*/}
+                {/*            className={"shadow mt-2 p-3 rounded"}*/}
+                {/*            style={{*/}
+                {/*                border: 0,*/}
+                {/*                backgroundImage: "url(img2.png)",*/}
+                {/*                backgroundSize: "contain",*/}
+                {/*            }}*/}
+                {/*        >*/}
+                {/*            <Row>*/}
+                {/*                <Col md={6}>*/}
+                {/*                    <h5 className={"font-weight-bold text-white mb-0 mt-2"}>*/}
+                {/*                        Top summer music festivals 2020*/}
+                {/*                    </h5>*/}
+                {/*                    <p*/}
+                {/*                        style={{fontSize: 16}}*/}
+                {/*                        className={"text-light mb-0 mt-1"}*/}
+                {/*                    >*/}
+                {/*                        16 events*/}
+                {/*                    </p>*/}
+                {/*                </Col>*/}
+                {/*            </Row>*/}
+                {/*        </Card>*/}
+                {/*    </Col>*/}
+                {/*    <Col md={4}>*/}
+                {/*        <Card*/}
+                {/*            className={"shadow mt-2 p-3 rounded"}*/}
+                {/*            style={{*/}
+                {/*                border: 0,*/}
+                {/*                backgroundImage: "url(img2.png)",*/}
+                {/*                backgroundSize: "contain",*/}
+                {/*            }}*/}
+                {/*        >*/}
+                {/*            <Row>*/}
+                {/*                <Col md={6}>*/}
+                {/*                    <h5 className={"font-weight-bold text-white mb-0 mt-2"}>*/}
+                {/*                        Top summer music festivals 2020*/}
+                {/*                    </h5>*/}
+                {/*                    <p*/}
+                {/*                        style={{fontSize: 16}}*/}
+                {/*                        className={"text-light mb-0 mt-1"}*/}
+                {/*                    >*/}
+                {/*                        16 events*/}
+                {/*                    </p>*/}
+                {/*                </Col>*/}
+                {/*            </Row>*/}
+                {/*        </Card>*/}
+                {/*        <p className={"mt-3 text-right"}>*/}
+                {/*            Show me more <MdKeyboardArrowRight/>*/}
+                {/*        </p>*/}
+                {/*    </Col>*/}
+                {/*</Row>*/}
                 {/* End of 3 Highlight */}
 
                 {/* Start of Filter Date */}
-                <Row style={{marginTop: 20}}>
+                <Row style={{marginTop: 40}}>
                     <Col md={4}>
                         <h3 className={"font-weight-bold"}>Popular upcoming events</h3>
                     </Col>
