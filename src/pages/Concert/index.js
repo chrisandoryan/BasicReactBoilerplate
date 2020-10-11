@@ -70,9 +70,9 @@ function Concert(props) {
                                             {
                                                 !isReacted ? (
                                                     <React.Fragment>
-                                                        <RiEmotionLine style={{ fontSize: 40 }} className={"text-success"} onClick={() => handleReaction("3")}/>
-                                                        <RiEmotionNormalLine style={{ fontSize: 40 }} className={"text-muted"} onClick={() => handleReaction("2")}/>
-                                                        <RiEmotionSadLine style={{ fontSize: 40 }} className={"text-danger"} onClick={() => handleReaction("1")}/>
+                                                        <RiEmotionLine style={{ fontSize: 40 }} className={"text-success mt-4"} onClick={() => handleReaction("3")}/>
+                                                        <RiEmotionNormalLine style={{ fontSize: 40 }} className={"text-muted mt-4"} onClick={() => handleReaction("2")}/>
+                                                        <RiEmotionSadLine style={{ fontSize: 40 }} className={"text-danger mt-4 mb-4"} onClick={() => handleReaction("1")}/>
                                                     </React.Fragment>
                                                 ) : (
                                                         <h3>Thankies!</h3>
