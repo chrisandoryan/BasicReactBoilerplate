@@ -14,6 +14,9 @@ import { getEventData } from "../../services/event";
 function Concert(props) {
     const [event, setEvent] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const iframe = React.createRef();
+    
     const loadEvent = () => {
         let id = props.match.params.id;
         getEventData(id)
@@ -22,6 +25,7 @@ function Concert(props) {
                     let concert = new Event();
                     concert.setDocToObject(doc.data());
                     setEvent(concert);
+                    setLoading(false);
                 }
             });
     }
@@ -41,8 +45,8 @@ function Concert(props) {
                     <Splash></Splash> 
                 ) : (
                         <Row className={"fixed-bottom"}>
-                            <Col md={8}>
-                                <iframe className={"game-frame"} src={event?.concert_link} frameBorder="0" onLoad={handleFrameLoading} />
+                            <Col ref={iframe} md={8}>
+                                <iframe className={"game-frame"} src={event?.concert_link} frameBorder="0" onL={handleFrameLoading} />
                             </Col>
                             <Col md={2}>
                                 <Card
