@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import {Card, Col, Container, Row, Button} from "react-bootstrap";
+import {Card, Col, Container, Row, Button, Navbar} from "react-bootstrap";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/swiper.scss";
 import NumberFormat from 'react-number-format';
@@ -8,16 +8,18 @@ import NumberFormat from 'react-number-format';
 import {BiDollarCircle} from "react-icons/bi";
 import {GiMicrophone} from "react-icons/gi";
 import {MdKeyboardArrowRight} from "react-icons/md";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {RiArrowDownSLine} from "react-icons/ri";
-import {withFirebase} from "../../contexts";
-import {withRouter} from "react-router-dom";
+import {AuthContext, withFirebase} from "../../contexts";
+import {Link, withRouter} from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 
 function Home(props) {
 
     const db = props.firebase.db;
     const [events, setEvents] = useState([]);
     const [myEvents, setMyEvents] = useState([]);
+    const {user} = useContext(AuthContext);
 
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -52,11 +54,11 @@ function Home(props) {
     }
 
     const fetchMyEvent = (e) => {
-        const sampleUserId = "LjobinjsrgVGQWXVGbg0lcgGapB3"
+        const userId = user.uid
         let data = []
 
         db.collection("users")
-            .doc(sampleUserId)
+            .doc(userId)
             .collection("tickets")
             .get()
             .then((events) => {
@@ -87,14 +89,43 @@ function Home(props) {
     }
 
     useEffect(() => {
-        fetchMyEvent()
+        if (user != null) {
+            fetchMyEvent()
+        }
         fetchEvent()
     }, [])
 
     return (
         <div>
+            {/* Start of Nav*/}
+            <Navbar className={"ml-3 mt-3"}>
+                <Navbar.Brand href="#home">Gather Fest</Navbar.Brand>
+                <Navbar.Toggle/>
+                <Navbar.Collapse className="justify-content-end">
+                    {user != null ? (
+                        <Navbar.Text>
+                            Signed in as: <a href="#">{user.name}</a>
+                        </Navbar.Text>
+                    ) : (
+                        <span>
+                            <Navbar.Text>
+                                <Link className={"ml-3 text-dark"} to={ROUTES.LOGIN}>
+                                    Login
+                                </Link>
+                            </Navbar.Text>
+                            <Navbar.Text>
+                                <Link className={"ml-3 text-dark"} to={ROUTES.REGISTER}>
+                                    Register
+                                </Link>
+                            </Navbar.Text>
+                        </span>
+                    )}
+                </Navbar.Collapse>
+            </Navbar>
+            {/* End of Nav*/}
+
             {/* Start of Banner */}
-            <Swiper spaceBetween={20} slidesPerView={1.15} className={"mt-4"}>
+            <Swiper spaceBetween={20} slidesPerView={1.15} className={"mt-3"}>
                 <SwiperSlide>
                     <Card
                         className={"shadow ml-4 mb-5 rounded"}
@@ -185,42 +216,47 @@ function Home(props) {
                 </SwiperSlide>
             </Swiper>
             {/* End of Banner */}
+
             <Container>
                 {/* Start of My Events */}
-                <h3 className={"font-weight-bold"}>My events</h3>
-                <Row>
-                    {/* Start of My Event Item */}
-                    {myEvents.slice(0, 3).map((event, idx) => {
-                        return (
-                            <Col md={4} key={idx}>
-                                <Card
-                                    className={"shadow mt-2 rounded"}
-                                    style={{
-                                        border: 0,
-                                        backgroundImage:
-                                            "url(" + event.image_path + ")",
-                                        backgroundSize: "cover",
-                                    }}
-                                >
-                                    <Row className={"mt-4 pl-3 pr-3"}>
-                                        <Col md={10}>
-                                            <h5 className={"font-weight-bold text-white"}>
-                                                {event.name}
-                                            </h5>
-                                            <p className={"text-white"}>{event.startMonth} {event.startDate} - {event.endMonth} {event.endDate} </p>
-                                        </Col>
-                                    </Row>
-                                </Card>
-                                {idx === 2 ? (
-                                    <p className={"mt-3 text-right"}>
-                                        Show me more <MdKeyboardArrowRight/>
-                                    </p>
-                                ) : null}
-                            </Col>
-                        )
-                    })}
-                    {/* End of My Event Item */}
-                </Row>
+                {myEvents.length > 0 ? (
+                    <span>
+                        <h3 className={"font-weight-bold"}>My events</h3>
+                        <Row>
+                            {/* Start of My Event Item */}
+                            {myEvents.slice(0, 3).map((event, idx) => {
+                                return (
+                                    <Col md={4} key={idx}>
+                                        <Card
+                                            className={"shadow mt-2 rounded"}
+                                            style={{
+                                                border: 0,
+                                                backgroundImage:
+                                                    "url(" + event.image_path + ")",
+                                                backgroundSize: "cover",
+                                            }}
+                                        >
+                                            <Row className={"mt-4 pl-3 pr-3"}>
+                                                <Col md={10}>
+                                                    <h5 className={"font-weight-bold text-white"}>
+                                                        {event.name}
+                                                    </h5>
+                                                    <p className={"text-white"}>{event.startMonth} {event.startDate} - {event.endMonth} {event.endDate} </p>
+                                                </Col>
+                                            </Row>
+                                        </Card>
+                                        {idx === 2 ? (
+                                            <p className={"mt-3 text-right"}>
+                                                Show me more <MdKeyboardArrowRight/>
+                                            </p>
+                                        ) : null}
+                                    </Col>
+                                )
+                            })}
+                            {/* End of My Event Item */}
+                        </Row>
+                    </span>
+                ) : null}
                 {/* End of My Events */}
 
                 {/* Start of 3 Highlight */}
@@ -305,7 +341,7 @@ function Home(props) {
                 {/* End of 3 Highlight */}
 
                 {/* Start of Filter Date */}
-                <Row style={{marginTop: 75}}>
+                <Row style={myEvents.length > 0 ? "margin-top: 75px" : null}>
                     <Col md={4}>
                         <h3 className={"font-weight-bold"}>Popular upcoming events</h3>
                     </Col>
@@ -318,9 +354,9 @@ function Home(props) {
                     >
                         <Row>
                             <Col md={12}>
-                <span style={{color: "#3b3c3e"}}>
-                  Select Date <RiArrowDownSLine/>
-                </span>
+                                <span style={{color: "#3b3c3e"}}>
+                                  Select Date <RiArrowDownSLine/>
+                                </span>
                             </Col>
                         </Row>
                     </Card>
@@ -415,6 +451,14 @@ function Home(props) {
                 </Row>
                 {/* End of Event List */}
             </Container>
+
+            {/* Start of Footer */}
+            <footer className={"page-footer font-small"}>
+                <div className={"footer-copyright text-center py-3"}>© 2020 Copyright
+                    <a href="#"> Gather Fest</a>
+                </div>
+            </footer>
+            {/* End of Footer */}
         </div>
     );
 }
