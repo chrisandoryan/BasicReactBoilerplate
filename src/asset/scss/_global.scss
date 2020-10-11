@@ -1,1 +1,14 @@
 @import "./variable";
+
+@font-face {
+  font-family: 'GT-Walsheim';
+  src: local('GT-Walsheim'), url("../../fonts/GTWalsheimPro-Bold.ttf") format('truetype');
+}
+
+body, html, #root {
+  height: 100%;
+}
+
+* {
+  font-family: 'GT-Walsheim' !important;
+}

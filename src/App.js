@@ -1,37 +1,61 @@
-import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Card, Col, Container, Row} from "react-bootstrap";
-import {RiEmotionLine, RiEmotionNormalLine, RiEmotionSadLine} from "react-icons/ri";
-import Button from "@material-ui/core/Button";
-import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.scss";
 
-import "swiper/swiper.scss";
+import Firebase, { AuthContext, FirebaseContext } from "./contexts";
+import React, { useEffect, useState } from "react";
+import { Route, BrowserRouter as Router } from "react-router-dom";
+
+import Splash from "./components/Splash";
+import { ToastContainer } from "react-toastify";
+import User from "./models/user";
+import { getUserDocument } from "./services/user";
+import { routes } from "./constants/routes";
 
 function App() {
-    return (
-        <div>
-            <iframe className={"game-frame"} src="https://gather.town/app/J5KcIR6M7dQr6YYH/BlankPink" frameBorder="0"/>
-            <Row className={"fixed-bottom"}>
-                <Col md={4} />
-                <Col md={3}>
-                    <Card
-                        className={"shadow-lg rounded p-4"}
-                        style={{border: 0, backgroundImage: "linear-gradient(to right, #8400E2 0%, #bf4dcd 100%)"}}
-                    >
-                        <h4 className={"text-center text-white"}>Give your reaction</h4>
-                        <Card className={"shadow-lg mt-2"} style={{borderRadius: 25, border: 0}}>
-                            <div className={"text-center p-1"}>
-                                <RiEmotionSadLine style={{fontSize: 40}} className={"text-danger"} />
-                                <RiEmotionNormalLine style={{fontSize: 40}} className={"text-muted"} />
-                                <RiEmotionLine style={{fontSize: 40}} className={"text-success"}/>
-                            </div>
-                        </Card>
-                    </Card>
-                </Col>
-                <Col md={5} />
-            </Row>
-        </div>
-    );
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const firebase = new Firebase();
+
+  const auth = { user, setUser };
+
+  useEffect(() => {
+    firebase.auth.onAuthStateChanged(async (auth_user) => {
+      if (auth_user !== null) {
+        let doc_user = await getUserDocument(auth_user.uid);
+
+        if (doc_user !== null) {
+          doc_user.uid = auth_user.uid;
+
+          let user = new User();
+          user.setDocToObject(doc_user);
+          setUser(user);
+          setLoading(false);
+        }
+      }
+    });
+  }, user);
+
+  return (
+    loading ? (
+      <Splash></Splash>
+    ) : (
+        <FirebaseContext.Provider value={firebase}>
+          <AuthContext.Provider value={auth}>
+            <Router>
+              <React.Fragment>
+                <ToastContainer style={{ fontFamily: "GT-Walsheim" }} />
+                {
+                  routes.map((route) => (
+                    <Route exact path={route.path} component={route.component} />
+                  ))
+                }
+              </React.Fragment>
+            </Router>
+          </AuthContext.Provider>
+        </FirebaseContext.Provider>
+    )
+  );
 }
 
 export default App;
