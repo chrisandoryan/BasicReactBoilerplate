@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { AuthContext } from "../../contexts";
 
-function ModalUserData({ onSubmit = () => {}, ...props }) {
+function ModalUserData({ onCancel = () => {}, onSubmit = () => {}, ...props }) {
   const [formData, setFormData] = useState({});
   const { user } = useContext(AuthContext);
 
@@ -23,10 +23,15 @@ function ModalUserData({ onSubmit = () => {}, ...props }) {
   return (
     <>
       <Modal {...props}>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton={() => onCancel()}>
           <Modal.Title>Personal Information</Modal.Title>
         </Modal.Header>
-        <Form onSubmit={() => onSubmit(formData)}>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSubmit(formData);
+          }}
+        >
           <Modal.Body>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Name</Form.Label>
