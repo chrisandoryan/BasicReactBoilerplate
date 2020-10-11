@@ -1,5 +1,6 @@
 import Event from "../../models/event";
 import Firebase from "../../contexts";
+import User from "../../models/user";
 
 const firebase = new Firebase();
 const db = firebase.db;
