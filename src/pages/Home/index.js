@@ -1,12 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import {Card, Col, Container, Row} from "react-bootstrap";
+import {Card, Col, Container, Row, Button} from "react-bootstrap";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/swiper.scss";
 import NumberFormat from 'react-number-format';
 
 import {BiDollarCircle} from "react-icons/bi";
-import Button from "@material-ui/core/Button";
 import {GiMicrophone} from "react-icons/gi";
 import {MdKeyboardArrowRight} from "react-icons/md";
 import React, {useEffect, useState} from "react";
@@ -130,9 +129,9 @@ function Home(props) {
                           <NumberFormat value={event.price} thousandSeparator={true} prefix={"Rp "} displayType={"text"} renderText={value => <span style={{fontSize: 14, color: "#FFF"}}>{value}</span>} />
                         </div>
                         <Button
-                            className={"mt-3"}
-                            variant="contained"
-                            style={{backgroundColor: "#8400E2", color: "#FFF"}}
+                            className={"mt-3 shadow"}
+                            variant="primary"
+                            style={{backgroundColor: "#8400E2", color: "#FFF", border: 0}}
                         >
                           Buy Ticket
                         </Button>
@@ -356,8 +355,9 @@ function Home(props) {
                           </div>
                         </Card.Text>
                         <Button
-                            variant="contained"
-                            style={{backgroundColor: "#8400E2", color: "#FFF"}}
+                            variant="primary"
+                            style={{backgroundColor: "#8400E2", color: "#FFF", border: 0}}
+                            className={"shadow"}
                         >
                           Buy Ticket
                         </Button>
