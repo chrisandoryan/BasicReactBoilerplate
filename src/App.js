@@ -9,8 +9,6 @@ import { Route, BrowserRouter as Router, withRouter } from "react-router-dom";
 
 import Splash from "./components/Splash";
 import { ToastContainer } from "react-toastify";
-import User from "./models/user";
-import { getUserDocument } from "./services/user";
 
 function App(props) {
   const [user, setUser] = useState(null);
