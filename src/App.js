@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 
 import Firebase, { AuthContext, FirebaseContext } from "./contexts";
-import { LOGIN, routes } from "./constants/routes";
+import { routes } from "./constants/routes";
 import React, { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, withRouter } from "react-router-dom";
 
@@ -21,27 +21,7 @@ function App(props) {
 
   useEffect(() => {
     firebase.auth.onAuthStateChanged(async (auth_user) => {
-      if (auth_user !== null) {
-        let doc_user = await getUserDocument(auth_user.uid);
-
-        if (doc_user !== null) {
-          doc_user.uid = auth_user.uid;
-
-          let user = new User();
-          user.setDocToObject(doc_user);
-          setUser(user);
-          setLoading(false);
-        }
-        else {
-          console.log("Not logged in");
-        }
-      }
-      else {
-        //TODO: Redirect to login.
-        // props.history.push(LOGIN);
-        setUser(null);
-        setLoading(false);
-      }
+      // Login state changed, user is logged in/logged out.
     });
   }, user);
 

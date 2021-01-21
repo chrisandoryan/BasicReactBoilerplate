@@ -11,10 +11,18 @@ const firebaseConfig = {
 class Firebase {
     constructor() {
         if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
+            try {
+                firebase.initializeApp(firebaseConfig);
+            } catch (error) {
+                console.error("Firebase initialization failed.")
+            }
         }
-        this.auth = firebase.auth();
-        this.db = firebase.firestore();
+        try {
+            this.auth = firebase.auth();
+            this.db = firebase.firestore();   
+        } catch (error) {
+            
+        }
     }
 }
 
