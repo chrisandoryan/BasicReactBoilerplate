@@ -4,7 +4,7 @@ import { AuthContext, withFirebase } from "../../contexts";
 import { Link, useHistory, withRouter } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 
-function Home(props) {
+function Main(props) {
 
   useEffect(() => {
 
@@ -12,9 +12,9 @@ function Home(props) {
 
   return (
     <div>
-      Welcome to Home!
+      Welcome to Main!
     </div>
   );
 }
 
-export default withRouter(withFirebase(Home));
+export default withRouter(withFirebase(Main));

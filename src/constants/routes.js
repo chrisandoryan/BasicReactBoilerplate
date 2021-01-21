@@ -1,11 +1,11 @@
-import Home from "../pages/Home";
+import Main from "../pages/Main";
 
-export const HOME = "/";
+export const MAIN = "/";
 
 export const routes = [
   {
-    name: "Home",
-    path: HOME,
-    component: Home,
+    name: "Main",
+    path: MAIN,
+    component: Main,
   },
 ];
