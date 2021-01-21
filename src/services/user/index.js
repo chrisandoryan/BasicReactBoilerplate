@@ -14,5 +14,5 @@ export const getUserDocument = async (user_id) => {
 export const updateUserDocument = async (user_id, payload) => {
   const user = await db.collection("users").doc(user_id).get();
 
-  console.log("User", user);
+  return user;
 };
